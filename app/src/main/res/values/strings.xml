@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="action_settings">Settings</string>
+    <string name="cedula">Cedula</string>
+    <string name="nombre">Nombres</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="guardar">Guardar</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="addpersona">Agregar Persona</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
+    <string-array name="opciones_sexo">
+        <item>@string/femenino</item>
+        <item>@string/masculino</item>
+    </string-array>
 </resources>
