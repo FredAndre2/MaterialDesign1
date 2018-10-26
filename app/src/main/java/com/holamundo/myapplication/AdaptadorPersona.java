@@ -27,8 +27,8 @@ public class AdaptadorPersona extends
     @Override
     public void onBindViewHolder(PersonaViewHolder holder, int position) {
 Persona p = personas.get(position);
-holder.foto.setImageResource(p.getFoto());
-        holder.foto.setImageResource(p.getFoto());
+//holder.foto.setImageResource(p.getFoto());
+    //    holder.foto.setImageResource(p.getFoto());
         holder.cedula.setText(p.getCedula());
         holder.nombres.setText(p.getNombres());
         holder.apellidos.setText(p.getApellidos());

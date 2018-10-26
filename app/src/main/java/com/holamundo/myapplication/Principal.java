@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity {
@@ -19,6 +24,8 @@ private Intent i;
 private RecyclerView lstOpciones;
 private ArrayList<Persona> personas;
 private LinearLayoutManager llm;
+private DatabaseReference databaseReference;
+private String db = "Personas";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +41,8 @@ private LinearLayoutManager llm;
     llm.setOrientation(LinearLayoutManager.VERTICAL);
     lstOpciones.setLayoutManager(llm);
     lstOpciones.setAdapter(adaptadorPersona);
+    databaseReference = FirebaseDatabase.getInstance().getReference();
+   // databaseReference.child(db).addChildEventListener(new ValueEventListener())
     }
 
    public void agregarPersona(View v){
@@ -41,5 +50,13 @@ private LinearLayoutManager llm;
         startActivity(i);
         finish();
    }
-
+public void onDataChange(DataSnapshot dataSnapshot){
+        personas.clear();
+        if(dataSnapshot.exists()){
+            for (DataSnapshot snapshot :dataSnapshot.getChildren()){
+                Persona p = snapshot.getValue(Persona.class);
+                personas.add(p);
+            }
+        }
+}
 }

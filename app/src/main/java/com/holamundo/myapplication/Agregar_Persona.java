@@ -1,10 +1,12 @@
 package com.holamundo.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -45,16 +47,18 @@ private ImageView foto;
     }
 
     public void guardar(View v){
-        String ced,nom,ape;
-        int foto,sexo;
+        String ced,nom,ape,foto,id;
+        int sexo;
 
-        foto =this.fotoAleatoria();
+        //foto =this.fotoAleatoria();
+       id = Datos.getId();
+       foto= id+".jpg";
         ced = txtcedula.getText().toString();
         nom = txtnombres.getText().toString();
         ape =txtapellidos.getText().toString();
         sexo = cmbsexo.getSelectedItemPosition();
 
-        Persona p = new Persona(foto,ced,nom,ape,sexo);
+        Persona p = new Persona(foto,id,ced,nom,ape,sexo);
         p.guardar();
         Snackbar.make(v,"Persona guardada con exito!",Snackbar.LENGTH_SHORT).show();
 
@@ -65,6 +69,7 @@ private ImageView foto;
         txtnombres.setText("");
         cmbsexo.setSelection(0);
         txtcedula.requestFocus();
+
     }
 
     public void limpiar(View v){
@@ -74,6 +79,13 @@ private ImageView foto;
         finish();
         Intent i = new Intent( Agregar_Persona.this,Principal.class);
         startActivity(i);
+    }
+
+    public void seleccionar_foto(View v){
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+      //  startActivityForResult(Intent.createChooser(i,));
     }
 
 }

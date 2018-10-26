@@ -1,26 +1,41 @@
 package com.holamundo.myapplication;
 
 public class Persona {
-    private int foto;
+    private String foto;
+    private String id;
     private String cedula;
     private String nombres;
     private String apellidos;
     private int sexo;
 
-    public Persona(int foto, String cedula, String nombres, String apellidos, int sexo) {
+    public Persona() {
+    }
+
+    public Persona(String foto, String id, String cedula, String nombres, String apellidos, int sexo) {
         this.foto = foto;
+        this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
     }
 
-    public int getFoto() {
+
+
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCedula() {
@@ -54,6 +69,7 @@ public class Persona {
     public void setSexo(int sexo) {
         this.sexo = sexo;
     }
+
     public void guardar(){
         Datos.guardar(this);
     }
